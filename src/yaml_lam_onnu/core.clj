@@ -42,12 +42,12 @@
 
 (defn write-yaml [yml-content filename]
   (println "write-yaml" filename)
-  (spit filename
-        (yaml/generate-string
-         yml-content
-         :dumper-options {:flow-style :block
-                          :scalar-style :double-quoted
-                          :split-lines false})))
+  (let [out-str (yaml/generate-string
+                 yml-content
+                 :dumper-options {:flow-style :block
+                                  :scalar-style :double-quoted
+                                  :split-lines false})]
+    (spit filename (string/replace out-str "\\_" " "))))
 
 (comment
   (apply merge (map load-yaml ["/home/rex/sandbox/helpkit/config/locales/fr.yml" "/home/rex/Downloads/old-freshdesk-for-mint/to_process/fr/en.yml"]))
