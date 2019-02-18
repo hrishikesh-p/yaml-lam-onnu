@@ -28,7 +28,6 @@
                             (assoc-in (assoc-in maap parent-key {}) map-key map-value))))))) {} (seq dmap)))
 
 (defn load-yaml [filename]
-  (println "load-yaml" filename)
   (map->dotted-key-map "" (yaml/from-file filename false)))
 
 (defn merge-yaml [& files]
@@ -41,7 +40,6 @@
   (filter valid-file? filenames))
 
 (defn write-yaml [yml-content filename]
-  (println "write-yaml" filename)
   (spit filename
         (yaml/generate-string
          yml-content
