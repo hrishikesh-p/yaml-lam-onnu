@@ -48,13 +48,6 @@
          :dumper-options {:flow-style :block
                           :scalar-style :double-quoted
                           :split-lines false})))
-
-(comment
-  (apply merge (map load-yaml ["/home/rex/sandbox/helpkit/config/locales/fr.yml" "/home/rex/Downloads/old-freshdesk-for-mint/to_process/fr/en.yml"]))
-  (filter #(string/includes? %1 "fr.ticket.tags") (keys (map->dotted-key-map "" (load-yaml "/home/rex/sandbox/helpkit/config/locales/fr.yml"))))
-
-  (reduce #(assoc-in %1 (string/split (first %2) #"\.") (second %2)) {} (seq (map->dotted-key-map "" (load-yaml "/home/rex/sandbox/helpkit/config/locales/fr.yml")))))
-
 (defn -main
   [& args]
   (let [output-file (last args)
